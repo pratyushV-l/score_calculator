@@ -143,6 +143,10 @@ h2 {
   gap: 12px;
 }
 
+.assessment-entry {
+  min-width: 0;
+}
+
 .assessment-row {
   display: flex;
   align-items: end;
@@ -295,7 +299,6 @@ input:focus {
 }
 
 .input-error {
-  flex-basis: 100%;
   margin: 4px 0 0;
   color: #a40000;
   font-size: 0.72rem;

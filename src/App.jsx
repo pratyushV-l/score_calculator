@@ -59,7 +59,7 @@ function assessmentError(assessment) {
     return '';
   }
   if (obtained === '' || total === '') {
-    return 'Enter both marks.';
+    return '';
   }
   if (Number(total) <= 0) {
     return 'Total marks must be greater than 0.';
@@ -107,43 +107,45 @@ function AssessmentInputs({ assessments, label, onChange, onAdd, onRemove }) {
 
       <div className="assessment-list">
         {assessments.map((assessment, index) => (
-          <div className="assessment-row" key={index}>
-            <span className="row-label">
-              {itemLabel} {index + 1}
-            </span>
-            <label>
-              <span>Obtained</span>
-              <input
-                min="0"
-                inputMode="decimal"
-                type="number"
-                value={assessment.obtained}
-                onChange={(event) => onChange(index, 'obtained', event.target.value)}
-                placeholder="0"
-              />
-            </label>
-            <span className="slash">/</span>
-            <label>
-              <span>Total</span>
-              <input
-                min="0"
-                inputMode="decimal"
-                type="number"
-                value={assessment.total}
-                onChange={(event) => onChange(index, 'total', event.target.value)}
-                placeholder="0"
-              />
-            </label>
-            {assessments.length > 1 && (
-              <button
-                className="remove-button"
-                type="button"
-                onClick={() => onRemove(index)}
-                aria-label={`Remove ${itemLabel} ${index + 1}`}
-              >
-                ×
-              </button>
-            )}
+          <div className="assessment-entry" key={index}>
+            <div className="assessment-row">
+              <span className="row-label">
+                {itemLabel} {index + 1}
+              </span>
+              <label>
+                <span>Obtained</span>
+                <input
+                  min="0"
+                  inputMode="decimal"
+                  type="number"
+                  value={assessment.obtained}
+                  onChange={(event) => onChange(index, 'obtained', event.target.value)}
+                  placeholder="0"
+                />
+              </label>
+              <span className="slash">/</span>
+              <label>
+                <span>Total</span>
+                <input
+                  min="0"
+                  inputMode="decimal"
+                  type="number"
+                  value={assessment.total}
+                  onChange={(event) => onChange(index, 'total', event.target.value)}
+                  placeholder="0"
+                />
+              </label>
+              {assessments.length > 1 && (
+                <button
+                  className="remove-button"
+                  type="button"
+                  onClick={() => onRemove(index)}
+                  aria-label={`Remove ${itemLabel} ${index + 1}`}
+                >
+                  ×
+                </button>
+              )}
+            </div>
             {assessmentError(assessment) && (
               <p className="input-error">{assessmentError(assessment)}</p>
             )}
